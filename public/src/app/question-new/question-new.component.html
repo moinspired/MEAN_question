@@ -1,0 +1,39 @@
+<div>
+    <button [routerLink]="['/dashboard']">Home</button>
+  </div>
+  <div>
+    <h3>Put the question and options here:</h3>
+  </div>
+  <div>
+    <form (submit)="createPoll()"  #reg="ngForm">
+      <div>
+        <label>Question</label><br/>
+        <textarea 
+          type="text" 
+          name="question" 
+          required
+          minlength="4" 
+          [(ngModel)]="newQuestion.question" 
+          #question="ngModel">
+          </textarea>
+      </div>
+      <div *ngIf="newQuestion.question.length < 10"><div>Questions must at least 10 characters long.</div></div>
+      <div>
+        <label>Description (optional)</label><br/>
+        <textarea 
+          type="text" 
+          name="description" 
+          minlength="4" 
+          [(ngModel)]="newQuestion.description"
+          #description="ngModel">
+        </textarea>
+      </div>
+      <div>
+        <input type="submit" value="Create" [disabled]="reg.invalid">
+      </div>
+    </form>
+    <div>
+      <p *ngFor="let error of errors">{{ error}} </p>
+    </div>
+  </div>
+

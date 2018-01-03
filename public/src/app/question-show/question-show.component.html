@@ -1,0 +1,26 @@
+<div>
+  <button (click)="logout()" class="float_right">Logout</button>
+  <a href [routerLink]="['/dashboard']"  class="float_left">Home</a>
+  <a href [routerLink]="['/questions','answer', question._id]">Answer this Question</a>
+  <a href [routerLink]="['/create']">Add a Question</a>
+</div>
+
+<div>
+  <h1>{{question.question}}</h1>
+  <p>{{question.description}}</p>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>answers</th>
+      <th>action</th>
+    </tr>
+    <tr *ngFor="let answer of question._answers |  orderBy : 'like': true">
+      <td>{{answer.use}} {{answer.answer}}</td>
+      <td>{{answer.like}} likes
+        <button (click)="update(answer._id)">Like!</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
